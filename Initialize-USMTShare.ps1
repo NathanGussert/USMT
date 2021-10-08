@@ -57,7 +57,8 @@ function Initialize-USMTShare {
         }
         catch {
             Invoke-Expression(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/NathanGussert/Start-FileDownload/main/Start-FileDownload.psm1')
-            #Start-FileDownload
+            $USMTZipFile = Start-FileDownload -url https://github.com/NathanGussert/USMT/blob/main/USMT.zip -targetpath $USMTFolderPath
+            Expand-Archive -Path $USMTZipFile -DestinationPath $USMTFolderPath
         }
 
         # Check desired folder path is Shared and permissions are set
